@@ -12,9 +12,6 @@ async def get_users():
         "users": []
     }
 
-
-router = APIRouter()
-
 @router.get("/error")
 async def test_error():
 
