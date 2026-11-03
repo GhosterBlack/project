@@ -51,7 +51,8 @@ def login(
 
     token = create_access_token({
         "id": user.id,
-        "email": user.email
+        "email": user.email,
+        "role": user.role
     })
 
     return success(data={"user_token": token}, message="usuario encontrado")

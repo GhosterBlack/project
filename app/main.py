@@ -8,9 +8,19 @@ from app.routes.product_routes import router as product_router
 from app.database.database import Base
 from app.database.database import engine
 from app.routes.auth import router as auth_router
+from fastapi.middleware.cors import CORSMiddleware
 
 Base.metadata.create_all(bind=engine)
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 @app.exception_handler(ApiException)
 async def api_exception_handler(

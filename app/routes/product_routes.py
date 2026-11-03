@@ -8,6 +8,7 @@ from app.database.database import SessionLocal
 from app.core.exceptions import ApiException
 from app.core.responses import success
 from app.core.auth_dependency import get_current_user
+from app.core.roles import require_role
 
 
 router = APIRouter()
@@ -28,7 +29,7 @@ def get_db():
 def create_product(
     product: ProductCreate,
     db: Session = Depends(get_db),
-    current_user = Depends(get_current_user)
+    current_user = Depends(require_role("editor"))
 ):
 
     new_product = Product(
@@ -61,7 +62,7 @@ def create_product(
 def get_product(
     key: str,
     db: Session = Depends(get_db),
-    current_user = Depends(get_current_user)
+    current_user = Depends(get_current_user),
 ):
 
     product = (

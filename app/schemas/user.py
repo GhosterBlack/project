@@ -5,6 +5,7 @@ class UserRegister(BaseModel):
     username: str
     email: EmailStr
     password: str
+    role: str = "viewer"
 
 
 class UserLogin(BaseModel):

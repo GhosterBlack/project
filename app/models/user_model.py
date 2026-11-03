@@ -28,3 +28,7 @@ class User(Base):
         String,
         nullable=False
     )
+    role = Column(
+        String,
+        default="viewer"
+    )
